@@ -61,8 +61,7 @@ public class FluidLogisticsJEI implements IModPlugin {
 	private static IJeiRuntime runtime;
 	private CreateRecipeCategory<BulkCoolingRecipe> bulkCooling;
 
-	@SuppressWarnings("rawtypes")
-	private static final FluidGhostIngredientHandler FILTER_FLUID_HANDLER = new FluidGhostIngredientHandler();
+	private static final FluidGhostIngredientHandler<AbstractFilterScreen<?>> FILTER_FLUID_HANDLER = new FluidGhostIngredientHandler<>();
 	private static final FluidGhostIngredientHandler<ResourceFactoryGaugeSetFilterScreen>
 		RESOURCE_GAUGE_SET_FILTER_FLUID_HANDLER = new FluidGhostIngredientHandler<>();
 	private static final FluidGhostIngredientHandler<RedstoneRequesterScreen>
@@ -127,7 +126,10 @@ public class FluidLogisticsJEI implements IModPlugin {
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
 		if (!CompatMods.emiLoaded()) {
-			registration.addGhostIngredientHandler(AbstractFilterScreen.class, FILTER_FLUID_HANDLER);
+			// Java class literals erase generic screen parameters; the handler accepts every filter-screen subtype.
+			@SuppressWarnings({"unchecked", "rawtypes"})
+			Class<AbstractFilterScreen<?>> filterScreenType = (Class) AbstractFilterScreen.class;
+			registration.addGhostIngredientHandler(filterScreenType, FILTER_FLUID_HANDLER);
 			registration.addGhostIngredientHandler(ResourceFactoryGaugeSetFilterScreen.class,
 				RESOURCE_GAUGE_SET_FILTER_FLUID_HANDLER);
 			registration.addGhostIngredientHandler(RedstoneRequesterScreen.class, REDSTONE_REQUESTER_FLUID_HANDLER);
