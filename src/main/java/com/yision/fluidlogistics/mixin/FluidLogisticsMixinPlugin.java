@@ -13,7 +13,8 @@ public class FluidLogisticsMixinPlugin implements IMixinConfigPlugin {
 
 	private static final Set<String> JEI_ONLY_MIXINS = Set.of(
 		"com.yision.fluidlogistics.mixin.client.StockKeeperTransferHandlerMixin",
-		"com.yision.fluidlogistics.mixin.client.BasinCategoryMixin");
+		"com.yision.fluidlogistics.mixin.client.BasinCategoryMixin",
+		"com.yision.fluidlogistics.mixin.client.FluidIngredientDisplayMixin");
 
 	private boolean jeiLoaded;
 
