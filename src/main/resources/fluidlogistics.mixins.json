@@ -54,7 +54,8 @@
         "client.SchematicHandlerMixin",
         "client.StockKeeperTransferHandlerMixin",
         "client.StockKeeperRequestScreenMixin",
-        "client.TableClothBlockEntityMixin"
+        "client.TableClothBlockEntityMixin",
+        "client.FluidIngredientDisplayMixin"
     ],
     "injectors": {
         "defaultRequire": 1
